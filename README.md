@@ -13,6 +13,7 @@ One example of utilizing machine learning is the diagnosis of anemia in feline p
 
 
 <img src = "https://github.com/martineztcindy/martineztcindy.github.io/blob/main/aggregate-punctate-300x179.png?raw=true.png" alt = "aggpunt" width = 300>
+
 *Figure 1: Image of aggregate and punctate reticulocyte [3]*
 
 The goal of this project was to use supervised learning techniques, specifically a CNN architecture, to train a model to locate an aggregate reticulocyte within a 300 x 300 image of a stained blood smear. The blood smear contained multiple classes and objects, but for this project, I only looked to locate one object of one class per image. Regression was used to predict the spatial coordinate (boundary boxes) of the aggregate reticulocytes within the given image. 
