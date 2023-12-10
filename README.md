@@ -18,7 +18,7 @@ One example of utilizing machine learning is the diagnosis of anemia in feline p
 
 The goal of this project was to use supervised learning techniques, specifically a CNN architecture, to train a model to locate an aggregate reticulocyte within a 300 x 300 image of a stained blood smear. The blood smear contained multiple classes and objects, but for this project, I only looked to locate one object of one class per image. Regression was used to predict the spatial coordinate (boundary boxes) of the aggregate reticulocytes within the given image. 
 
-The model was able to predict the boundary boxes with a final Intersection over Union score of 0.61 for the training set and a score of 0.62 for the training set and 0.49 for the testing set.
+The model was able to predict the bounding boxes with a final Intersection over Union score of 0.52 for the training set and 0.53 for the testing set. The final mean average error (MAE) was 0.074 and 0.073 for the training and testing set, respectively.
 
 
 ## Data 
@@ -82,5 +82,11 @@ Below are samples of images from the testing and training predictions that conta
 *Figures 6-9: Sample images from testing and training predictions*
 
 Finally, I tested images not previously shown by the model. Unfortunately, I do not have the annotations so I cannot assess the results. However, visually one can see the model’s capability in detecting aggregate reticulocytes. 
+
+## References 
+[1]
+[2]
+[3]
+[4]
 
 
