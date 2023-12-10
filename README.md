@@ -67,3 +67,22 @@ Before building the model, it is important to also scale the outputs since the i
 ``y_train = y_train / [image_width, image_height, image_width, image_height]
   y_test = y_test / [image_width, image_height, image_width, image_height]``
 
+  ## Modeling
+
+I chose to use tf.keras.Sequential()to construct my CNN network since it is suitable for object detection tasks that process features across multiple layers. The model is designed to handle 300 x 300 pixel images with the layers to help learn and predict bounding box coordinates for the target object, aggregate reticulocyte. 
+
+The model consists of convolutional layers to capture the features (edges, textures, and patterns). The first convolutional layer uses 32 filters with a size of 3 x 3. It activates these features using the ‘relu’. I chose Rectified Linear Unit (ReLU) activation function since it had a lower loss rate than the sigmoid function. Max-pooling layer helps to shrink the spatial size of the feature. This is repeated again with 64 filters to help with feature extraction. The features are flattened in a single list. The first dense layer has 128 neurons, the second has 64, and the third has 32. The final output layer has four neurons, representing the four bounding box coordinates). This time, linear activation was selected because the output predicted numerical values for the location. 
+
+Now we can compile the model with our training and testing data using the IoU metric. The IoU metric was selected because it is the best for assessing the accuracy of object detection and localization. It measures the overlap between predicted and the ground truth bounding boxes. I used the mean absolute error (MAE) for my loss function because it is well-suited for regression tasks, such as predicting bounding box coordinates. MAE calculates the average absolute difference between the predicted and actual values, helping localize the object target in the images. 
+
+The model.fit() function was used to train the CNN with the training set for 10 epochs, a batch size set to 32, and validating using the test data. 
+
+## Results
+Figure XX shows the plot for the MAE over epochs. Figure XX shows the plot for the IoU over epochs. 
+
+Below are samples of images from the testing and training set that contain both the predicted and ground truth bounding boxes. 
+
+
+Finally, I tested images not previously shown by the model. Unfortunately, I do not have the annotations so I cannot assess the results. However, visually one can see the model’s capability in detecting aggregate reticulocytes. 
+
+
