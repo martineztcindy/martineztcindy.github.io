@@ -45,7 +45,7 @@ Since we already split the main dataframe into test_df and train_df, we need the
 
 To normalize the images, I divide the values in x_train and x_test by 255 to get a range from 0 to 1. I then visualized some of the sample to make sure the information is being stored properly. This was done for both the x_train and the x_test.  
 
-<img src = "https://github.com/martineztcindy/martineztcindy.github.io/blob/main/image1.png?raw=true.png" alt = "img1, width = 300>
+<img src = "https://github.com/martineztcindy/martineztcindy.github.io/blob/main/image1.png?raw=true.png" alt = "img1", width = 300>
 ![image1](https://github.com/martineztcindy/martineztcindy.github.io/blob/main/image1.png?raw=true)
 ![image2](https://github.com/martineztcindy/martineztcindy.github.io/blob/main/image2.png?raw=true)
 *Figure 3: Image 2 clearly has only 1 object while Image 1 contains more than 1.*
