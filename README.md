@@ -1,72 +1,73 @@
-**Hi class, welcome to the AOS C111/204 final project!** <img align="right" width="220" height="220" src="/assets/IMG/template_logo.png">
+## Detection of Aggregate Reticulocyte in Feline Blood Smears
 
-For this project, you will be applying your skills to train a machine learning model using real-world data, then publishing a report on your own website.
-
-* To get data for your project, you could:
-  * use **your own data** from a separate research activity
-  * **scour the internet** to find something original, then preprocess it yourself - see the Module Overview on BruinLearn for some resources
-  * browse an archive of data designed for machine learning problems, such as the [UC Irvine Machine Learning Repository](https://archive.ics.uci.edu/datasets)
-
-* Your report should be in the region of 2000-2500 words with three to four figures, and written in a scientific language and style. [This template page](/project.md) gives an example structure that you could use, but feel free to make it your own.
-
-Your website will be a great addition to your CV, and a place to host future projects too since it doubles as a GitHub repository. The first step is to set up a project website like this one by following the instructions below. 
-
-## How does this website work?
-
-First, check out the Github repository for this site: [https://github.com/atmosalex/atmosalex.github.io/](https://github.com/atmosalex/atmosalex.github.io/).
-
-Using GitHub pages, you can write a website using markdown syntax - the same syntax we use to write comments in Google Colab notebooks. GitHub pages then takes the markdown file and renders it as a web page using a Jekyll theme. The markdown source code for this page [is shown here](https://github.com/atmosalex/atmosalex.github.io/blob/main/README.md?plain=1).
-
-## Setting up your Project Website
-
-### How to copy this site as a template
-1. Create [a GitHub account](https://github.com/)
-2.	Create a new GitHub repository with the name **username.github.io**, where **username** is your GitHub username as shown below. Select *public* and do not tick *Add a README file*. [![screenshot][1]][1]
-3.	From your new repository, you should see a *Quick setup* guide. Scroll down to the bottom of the page and click *Import code*, as shown: [![screenshot][2]][2]
-4.	In the box that says *Your old repository’s clone URL*, copy and paste this URL: `https://github.com/atmosalex/atmosalex.github.io/`, then proceed.
-5.	Go to the *Settings* tab, then click *Pages* (under *Code and automation*), and check that the *Build and deployment* section looks like this: [![screenshot][3]][3]
-6.	If you can see the *Actions* tab, click it and check that the build and deployment action has finished. Once it has, navigate to **[username].github.io** to see your site, which should be a copy of this one! If you cannot see an *Actions* tab, just wait a few minutes then go to your URL to check it is live.
-
-Now you are ready to customize your site! To add your name to the site, go to your Github page, edit `_config.yml`, and replace the temporary title with your name.
-
-[1]: /assets/IMG/instr_create.png
-[2]: /assets/IMG/instr_import.png
-[3]: /assets/IMG/instr_bd.png
-
-### How to change the theme (optional)
-1.	You can choose any theme [listed on this page](https://pages.github.com/themes/), though some do not work as well on mobile devices.
-2.	From GitHub, edit `_config.yml` and replace the `theme:` line with `theme: jekyll-theme-name` where `name` is the name of the theme from the above list. **For the `minima` theme, use a shortened preface like so `theme: minima`**, the others seem to need the whole preface `theme: jekyll-theme-`. You can check the *Actions* tab (as in step 6. above) to make sure the site is building successfully.
-
-### How to change your site logo (optional)
-1. Some themes, such as `jekyll-theme-minimal`, show a logo. In your repository, upload a logo or profile picture to the `assets/IMG/` directory
-2. Open `_config.yml` and modify the line `logo: /assets/IMG/template_logo.png` to point to your new image
+I applied a Convolutional Neural Network (CNN) architecture to solve an object detection task to identify aggregate reticulocytes in blood smears of feline patients. 
 
 ***
+## Introduction 
 
-## Guide to Adding Content
-* Your repository's `README.md` file (the file you are reading now) acts like a home page. Replace its contents with whatever you want the world to see by editing the file on GitHub.
-* If you want to turn this page into a CV or blog, etc., it may be useful to refer to a [guide for writing Markdown](https://www.markdownguide.org/basic-syntax/).
-* You can create other markdown files (.md) in your repository and navigate to them from this page using links, i.e.: [here is a link to another file, `project.md`](project.md)
-* When editing a markdown file on GitHub, it is useful to wrap text by selecting the *Soft wrap* option as shown: ![screenshot](/assets/IMG/instr_wrap.png)
-* If you want to get even more technical, you can also write HTML in your .md files, and GitHub Pages will render it. For example, the image below is displayed by writing the following (edit this file to see!): `<img align="right" width="200" height="200" src="/assets/IMG/template_frog.png">`
-<img align="right" width="337" height="200" src="/assets/IMG/template_frog.png"> 
+Financial constraints are among the most prevalent reasons that prevent a pet owner from seeking veterinary care for their pet. As reported by Betterpet1, the expenses associated with an emergency visit alone can skyrocket, reaching upwards of $13,000. This substantial financial burden is due to the cost of diagnostic imaging tests such as CT scan, radiographs, and ultrasounds that require a board certified specialist to perform and interpret. Not only are these cost out-of-pocket, they usually require the pet to be anesthetized, raising the cost even more.  Recognizing these financial challenges, there is a growing motivation to explore the integration of machine learning technologies to potentially alleviate these financial constraints in veterinary care. 
 
-***
+Advancements in machine learning in human medicine are much greater than that of veterinary care when searching on Google Scholar. For example, one paper developed a model to analyze chest CT scan images to help diagnose COVID-19. Among the research, the most interesting is the use of machine learning and deep learning in oncology. Searches for similar research in veterinary medicine yield less robust results. This discrepancy is likely due to the limited data collected and the ethical dilemmas faced. Notably, the potential for a misdiagnosis may inadvertently lead to owners to opt for euthanisa since the cost of treating the issue may be overwhelming. Therefore, there is a need for more research and development of machine learning technologies tailored for veterinary medicine that enhance diagnostic accuracy. 
 
-## Delivering your Project
+One example of utilizing machine learning is the diagnosis of anemia in feline patients. The first step would be conducting a complete blood cell count (CBC) on a blood analyzer. If the pet is found to have a low red blood cell (RBC) count, a blood smear will have to be stained to count the presence of immature red blood cells, known as reticulocytes. This will let the veterinarian know if the bone marrow is responding appropriately. The challenge lies in distinguishing between aggregate reticulocyte and punctate reticulocyte within the blood smear. Only the aggregate reticulocyte should be counted because punctate reticulocytes, having been in the blood for several days, do not accurately reflect bone marrow response. As Figure 1 shows, they have similar structure, except aggregate reticulocyte have more clumps a blue-stained granules. 
 
-Your final project has three components: a dataset, a report, and your code.
 
-### Dataset
+Figure 1: Image of aggregate and punctate reticulocyte
+Source:  eClinPath
 
-A link to the dataset you used must be submitted on BruinLearn so that your course instructor can use it to run your code. To do this, it might be easiest to upload the dataset to Google Drive, then share a link (click *Share* then *Copy link*). If your dataset is too big to upload, try to find a way to reduce its size, or speak with your instructor if this is not possible.
+The goal of this project was to use supervised learning techniques, specifically a CNN architecture, to train a model to locate an aggregate reticulocyte within a 300 x 300 image of a stained blood smear. The blood smear contained multiple classes and objects, but for this project, I only looked to locate one object of one class per image. Regression was used to predict the spatial coordinate (boundary boxes) of the aggregate reticulocytes within the given image. 
 
-### Report
+The model was able to predict the boundary boxes with a final Intersection over Union score of 0.61.
 
-Your report should be **delivered via your website**. Submit a link to your website on BruinLearn so that your instructor can browse it to find your report. 
 
-To make this simple, you can write the report using a word processor or Latex, then export it as a .pdf file and upload it to the `assets` directory. You can then link to it [like so](/assets/project_demo.pdf). However, you can also type the report directly onto the website using another markdown page - [here is](/project.md) a template for that.
+## Data 
 
-### Code
+The dataset for this project was obtained from Kaggle that consisted of two files, one containing images as JPEG images and the other as XML files containing bounding box information in Pascal Visual Object Classes (VOC) format as shown below. This format is commonly used for computer vision tasks since it annotates objects within images. 
 
-A link to your code must be submitted on BruinLearn, and the course instructor must be able to download and run your code using the dataset. The code could be in a Google Colab notebook (make sure to *share* the notebook so access is set to **Anyone with the link**), or you could upload the code into a separate GitHub repository, or you could upload the code into the `assets` directory of your website and link to it. 
+
+
+
+
+
+Since I worked on a Google Collab workspace, I was able to upload the dataset to my GoogleDrive into two folders (labels and images). As mention, since the XML files were all in Pascal VOC format, I was able to easily parse through all the files to extract the bounding box coordinates of only the objects labeled “aggregate reticulocyte” using xml.etree.ElementTree. I also extracted the image file name to confirm the bounding box information was being extracted correctly. These lists of coordinates were added to another data list that was then converted into a DataFrame to handle the data more efficiently. 
+
+	
+
+<object>
+		<name>aggregate reticulocyte</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>138</xmin>
+			<ymin>229</ymin>
+			<xmax>185</xmax>
+			<ymax>277</ymax>
+		</bndbox>
+	</object>
+Comparing to file 001173.xml file.
+
+Now, we have 1001 images, considering the division based on bounding box information. Ultimately, this means that a single image might contribute to both the training or testing sets, introducing bias to the results. Another approach would be to only select the first unique instance in the list of data. However, this would involve data augmentation to ensure diversity, but this can introduce noise. 
+
+The data frame was then split into a training and testing dataframe before preprocessing using the sklearn.model_selection.train_test_split()method. 
+
+Now that the data is split into training and test data, we need to convert the image and bounding box information need to be converted into NumPy arrays. First, we needed to load the input (images). Since we are loading the images using OpenCV, the default color representation is BGR, but Matplotlib operates in RGB. So if I wanted to visualize the data, it made sense to convert into RGB. For each row in the dataframe, a function extracted the “file name”, uploaded the image, and stored the pixel information as an array. Extracting bounding box information was straightforward as it was already organized into rows in the dataframe. 
+
+
+Since we already split the main dataframe into test_df and train_df, we need the input and output arrays for the training and testing dataframes. This results in our x_train, y_train, x_test, and y_test as NumPy arrays. The x_test and x_train were shaped as (number of samples, image width, image height, and channels). The y_test and y_train were shaped as (number of samples, number of coordinates). 
+
+ x_train shape: (800, 300, 300, 3)
+y_train shape: (800, 4)
+
+x_train shape: (201, 300, 300, 3)
+x_train shape: (201, 4)
+
+
+To normalize the images, I divide the values in x_train and x_test by 255 to get a range from 0 to 1. I then visualized some of the sample to make sure the information is being stored properly. This was done for both the x_train and the x_test.  
+
+
+Figure X clearly has only 1 object while Figure 2 contains more than 1. 
+
+Before building the model, it is important to also scale the outputs since the images normalized. y_train = y_train / [image_width, image_height, image_width, image_height]
+y_test = y_test / [image_width, image_height, image_width, image_height]
+
