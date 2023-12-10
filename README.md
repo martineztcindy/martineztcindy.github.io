@@ -31,7 +31,7 @@ Figure 2: Sample XML file showing Pascal VOC format
 Since I worked on a Google Collab workspace, I was able to upload the dataset to my GoogleDrive into two folders (labels and images). As mention, since the XML files were all in Pascal VOC format, I was able to easily parse through all the files to extract the bounding box coordinates of only the objects labeled “aggregate reticulocyte” using xml.etree.ElementTree. I also extracted the image file name to confirm the bounding box information was being extracted correctly. These lists of coordinates were added to another data list that was then converted into a DataFrame to handle the data more efficiently. 
 
 ![dataframe example](https://github.com/martineztcindy/martineztcindy.github.io/blob/main/Capture.PNG?raw=true)
-![XML file](![dataframe example](https://github.com/martineztcindy/martineztcindy.github.io/blob/main/Capture.PNG?raw=true)	
+![XML file](https://github.com/martineztcindy/martineztcindy.github.io/blob/main/Capture2.PNG?raw=true)
 
 *Figure 3: Comparing the information in the dataframe to the corresponding 001173.xml file*
 
