@@ -45,8 +45,9 @@ Since we already split the main dataframe into test_df and train_df, we need the
 
 To normalize the images, I divide the values in x_train and x_test by 255 to get a range from 0 to 1. I then visualized some of the sample to make sure the information is being stored properly. This was done for both the x_train and the x_test.  
 
-**Figure 3: Image  clearly has only 1 object while Figure 2 contains more than 1. 
-**
+![image1](https://github.com/martineztcindy/martineztcindy.github.io/blob/main/image1.png?raw=true)
+![image2](https://github.com/martineztcindy/martineztcindy.github.io/blob/main/image2.png?raw=true)
+*Figure 3: Image 2 clearly has only 1 object while Image 2 contains more than 1.*
 
 Before building the model, it is important to also scale the outputs since the images normalized. 
 ``y_train = y_train / [image_width, image_height, image_width, image_height]
