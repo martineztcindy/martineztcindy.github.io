@@ -9,10 +9,10 @@ Financial constraints are among the most prevalent reasons that prevent a pet ow
 
 Advancements in machine learning in human medicine are much greater than that of veterinary care when searching on Google Scholar. For example, one paper developed a model to analyze chest CT scan images to help diagnose COVID-19. Among the research, the most interesting is the use of machine learning and deep learning in oncology. Searches for similar research in veterinary medicine yield less robust results. This discrepancy is likely due to the limited data collected and the ethical dilemmas faced. Notably, the potential for a misdiagnosis may inadvertently lead to owners to opt for euthanisa since the cost of treating the issue may be overwhelming. Therefore, there is a need for more research and development of machine learning technologies tailored for veterinary medicine that enhance diagnostic accuracy. 
 
-One example of utilizing machine learning is the diagnosis of anemia in feline patients. The first step would be conducting a complete blood cell count (CBC) on a blood analyzer. If the pet is found to have a low red blood cell (RBC) count, a blood smear will have to be stained to count the presence of immature red blood cells, known as reticulocytes. This will let the veterinarian know if the bone marrow is responding appropriately [2]. The challenge lies in distinguishing between aggregate reticulocyte and punctate reticulocyte within the blood smear. Only the aggregate reticulocyte should be counted because punctate reticulocytes, having been in the blood for several days, do not accurately reflect bone marrow response [3]. As Figure 1 shows, they have similar structure, except aggregate reticulocyte have more clumps a blue-stained granules. 
+One example of utilizing machine learning is the diagnosis of anemia in feline patients. The first step would be conducting a complete blood cell count (CBC) on a blood analyzer. If the pet is found to have a low red blood cell (RBC) count, a blood smear will have to be stained to count the presence of immature red blood cells, known as reticulocytes. This will let the veterinarian know if the bone marrow is responding appropriately [2]. The challenge lies in distinguishing between aggregate reticulocyte and punctate reticulocyte within the blood smear. Only the aggregate reticulocyte should be counted because punctate reticulocytes, having been in the blood for several days, do not accurately reflect bone marrow response [2]. As Figure 1 shows, they have similar structure, except aggregate reticulocyte have more clumps a blue-stained granules. 
 
 ![aggvspun](https://github.com/martineztcindy/martineztcindy.github.io/blob/main/aggregate-punctate-300x179.png?raw=true)
-Figure 1: Image of aggregate and punctate reticulocyte [4]
+*Figure 1: Image of aggregate and punctate reticulocyte [3]*
 
 The goal of this project was to use supervised learning techniques, specifically a CNN architecture, to train a model to locate an aggregate reticulocyte within a 300 x 300 image of a stained blood smear. The blood smear contained multiple classes and objects, but for this project, I only looked to locate one object of one class per image. Regression was used to predict the spatial coordinate (boundary boxes) of the aggregate reticulocytes within the given image. 
 
@@ -23,17 +23,11 @@ The model was able to predict the boundary boxes with a final Intersection over 
 
 The dataset for this project was obtained from Kaggle that consisted of two files, one containing images as JPEG images and the other as XML files containing bounding box information in Pascal Visual Object Classes (VOC) format as shown below. This format is commonly used for computer vision tasks since it annotates objects within images. 
 
-***INSERT IMAGE***
-Figure 2: Sample XML file showing Pascal VOC format
-
-
-
 Since I worked on a Google Collab workspace, I was able to upload the dataset to my GoogleDrive into two folders (labels and images). As mention, since the XML files were all in Pascal VOC format, I was able to easily parse through all the files to extract the bounding box coordinates of only the objects labeled “aggregate reticulocyte” using xml.etree.ElementTree. I also extracted the image file name to confirm the bounding box information was being extracted correctly. These lists of coordinates were added to another data list that was then converted into a DataFrame to handle the data more efficiently. 
 
 ![dataframe example](https://github.com/martineztcindy/martineztcindy.github.io/blob/main/Capture.PNG?raw=true)
 ![XML file](https://github.com/martineztcindy/martineztcindy.github.io/blob/main/Capture2.PNG?raw=true)
-
-*Figure 3: Comparing the information in the dataframe to the corresponding 001173.xml file*
+*Figure 2: Comparing the information in the dataframe to the corresponding 001173.xml file*
 
 Now, we have 1001 images, considering the division based on bounding box information. Ultimately, this means that a single image might contribute to both the training or testing sets, introducing bias to the results. Another approach would be to only select the first unique instance in the list of data. However, this would involve data augmentation to ensure diversity, but this can introduce noise. 
 
@@ -51,7 +45,7 @@ Since we already split the main dataframe into test_df and train_df, we need the
 
 To normalize the images, I divide the values in x_train and x_test by 255 to get a range from 0 to 1. I then visualized some of the sample to make sure the information is being stored properly. This was done for both the x_train and the x_test.  
 
-**Figure X clearly has only 1 object while Figure 2 contains more than 1. 
+**Figure 3: Image  clearly has only 1 object while Figure 2 contains more than 1. 
 **
 
 Before building the model, it is important to also scale the outputs since the images normalized. 
