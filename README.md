@@ -53,13 +53,14 @@ To normalize the images, I divide the values in x_train and x_test by 255 to get
 *Figure 3: Image 2 clearly has only 1 object while Image 1 contains more than 1.*
 
 Before building the model, it is important to also scale the outputs since the images normalized. 
+
 ``y_train = y_train / [image_width, image_height, image_width, image_height]
   y_test = y_test / [image_width, image_height, image_width, image_height]``
 
   ## Modeling
 
-  # CNN
-``model = tf.keras.Sequential([
+``
+model = tf.keras.Sequential([
 
     # First convolutional layer with 32 filters
     layers.Conv2D(32, (3, 3), activation='relu', input_shape=(300, 300, 3)),
@@ -78,7 +79,8 @@ Before building the model, it is important to also scale the outputs since the i
     layers.Dense(32, activation='relu'), # 32 neurons
 
     layers.Dense(4, activation='linear') # 4 nuerons and linear activation
-]``
+]
+``
 
 I chose to use tf.keras.Sequential()to construct my CNN network since it is suitable for object detection tasks that process features across multiple layers. The model is designed to handle 300 x 300 pixel images with the layers to help learn and predict bounding box coordinates for the target object, aggregate reticulocyte. 
 
