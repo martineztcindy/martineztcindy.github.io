@@ -9,12 +9,12 @@ Financial constraints are among the most prevalent reasons that prevent a pet ow
 
 Advancements in machine learning in human medicine are much greater than that of veterinary care when searching on Google Scholar. For example, one paper developed a model to analyze chest CT scan images to help diagnose COVID-19. Among the research, the most interesting is the use of machine learning and deep learning in oncology. Searches for similar research in veterinary medicine yield less robust results. This discrepancy is likely due to the limited data collected and the ethical dilemmas faced. Notably, the potential for a misdiagnosis may inadvertently lead to owners to opt for euthanisa since the cost of treating the issue may be overwhelming. Therefore, there is a need for more research and development of machine learning technologies tailored for veterinary medicine that enhance diagnostic accuracy. 
 
-One example of utilizing machine learning is the diagnosis of anemia in feline patients. The first step would be conducting a complete blood cell count (CBC) on a blood analyzer. If the pet is found to have a low red blood cell (RBC) count, a blood smear will have to be stained to count the presence of immature red blood cells, known as reticulocytes. This will let the veterinarian know if the bone marrow is responding appropriately [2]. The challenge lies in distinguishing between aggregate reticulocyte and punctate reticulocyte within the blood smear. Only the aggregate reticulocyte should be counted because punctate reticulocytes, having been in the blood for several days, do not accurately reflect bone marrow response [2]. As Figure 1 shows, they have similar structure, except aggregate reticulocyte have more clumps a blue-stained granules. 
+One example of utilizing machine learning is the diagnosis of anemia in feline patients. The first step would be conducting a complete blood cell count (CBC) on a blood analyzer. If the pet is found to have a low red blood cell (RBC) count, a blood smear will have to be stained to count the presence of immature red blood cells, known as reticulocytes. This will let the veterinarian know if the bone marrow is responding appropriately [2]. The challenge lies in distinguishing between aggregate reticulocyte and punctate reticulocyte within the blood smear. Only the aggregate reticulocyte should be counted because punctate reticulocytes, having been in the blood for several days, do not accurately reflect bone marrow response [3]. As Figure 1 shows, they have similar structure, except aggregate reticulocyte have more clumps a blue-stained granules. 
 
 
 <img src = "https://github.com/martineztcindy/martineztcindy.github.io/blob/main/aggregate-punctate-300x179.png?raw=true.png" alt = "aggpunt" width = 300>
 
-*Figure 1: Image of aggregate and punctate reticulocyte [3]*
+*Figure 1: Image of aggregate and punctate reticulocyte [4]*
 
 The goal of this project was to use supervised learning techniques, specifically a CNN architecture, to train a model to locate an aggregate reticulocyte within a 300 x 300 image of a stained blood smear. The blood smear contained multiple classes and objects, but for this project, I only looked to locate one object of one class per image. Regression was used to predict the spatial coordinate (boundary boxes) of the aggregate reticulocytes within the given image. 
 
@@ -58,6 +58,28 @@ Before building the model, it is important to also scale the outputs since the i
 
   ## Modeling
 
+  # CNN
+``model = tf.keras.Sequential([
+
+    # First convolutional layer with 32 filters
+    layers.Conv2D(32, (3, 3), activation='relu', input_shape=(300, 300, 3)),
+    layers.MaxPooling2D((2, 2)), # reduce the spatial dimension
+
+    # Second convultional layer with 64 filters
+    layers.Conv2D(64, (3, 3), activation='relu'),
+    layers.MaxPooling2D((2, 2)), # reduce spatial dimension
+
+
+    layers.Flatten(), # flatten features
+
+    # connect layers
+    layers.Dense(128, activation='relu'), # 128 neurons
+    layers.Dense(64, activation='relu'), # 64 neurons
+    layers.Dense(32, activation='relu'), # 32 neurons
+
+    layers.Dense(4, activation='linear') # 4 nuerons and linear activation
+]``
+
 I chose to use tf.keras.Sequential()to construct my CNN network since it is suitable for object detection tasks that process features across multiple layers. The model is designed to handle 300 x 300 pixel images with the layers to help learn and predict bounding box coordinates for the target object, aggregate reticulocyte. 
 
 The model consists of convolutional layers to capture the features (edges, textures, and patterns). The first convolutional layer uses 32 filters with a size of 3 x 3. It activates these features using the ‘relu’. I chose Rectified Linear Unit (ReLU) activation function since it had a lower loss rate than the sigmoid function. Max-pooling layer helps to shrink the spatial size of the feature. This is repeated again with 64 filters to help with feature extraction. The features are flattened in a single list. The first dense layer has 128 neurons, the second has 64, and the third has 32. The final output layer has four neurons, representing the four bounding box coordinates). This time, linear activation was selected because the output predicted numerical values for the location. 
@@ -83,10 +105,26 @@ Below are samples of images from the testing and training predictions that conta
 
 Finally, I tested images not previously shown by the model. Unfortunately, I do not have the annotations so I cannot assess the results. However, visually one can see the model’s capability in detecting aggregate reticulocytes. 
 
+<img src = "https://github.com/martineztcindy/martineztcindy.github.io/blob/main/newimage1.png?raw=true.png" alt = "new5" width = 300>
+<img src = "https://github.com/martineztcindy/martineztcindy.github.io/blob/main/newimage2.png?raw=true.png" alt = "new6" width = 300>
+<img src = "https://github.com/martineztcindy/martineztcindy.github.io/blob/main/newimage4.png?raw=true.png" alt = "new7" width = 300>
+<img src = "https://github.com/martineztcindy/martineztcindy.github.io/blob/main/newimage3.png?raw=true.png" alt = "new8" width = 300>
+
+*Figures 10-3: Sample images from never-before-seen images and the prediction boundary box*
+
+## Discussion
+The model did not prove to be as robust for predicting bounding boxing, with an IoU score of 0.52 for the training set, 0.53 for the testing test. Typically, an IoU score above 0.5 indicates a strong predictive performance. We would expect a great increase in IoU score for the testing test, so the slight increase in the testing set’s IoU score could potentially be attributed to repeated instances of the same images, given the dataset division by bounding box rather than unique file names. Despite these challenges, the relatively low MAE score for both the testing and training sets suggest accurate boundary box regression. The most impressive part about the model’s performance was its ability to accurately detect aggregate reticulocytes in images it had never seen before. 
+
+## Conclusion 
+When I first started this project, the initial task was to build a multi-task, multi-object detector. This was because the original dataset contains images with multiple objects with three distinct classes. So, not only would this be a regression task, but also a classification task. However, the main obstacle I faced was the dynamic nature of the data. The variability in both input shapes and corresponding output structures need to be carefully considered when building a CNN. 
+
+As mentioned, the reduction in sample size based on the bounding box affected the model’s performance. Despite these challenges, the fact that the model successfully located aggregate reticulocytes in images that it had not encountered before proved that with some fine-tuning, this model could be adapted to detect multiple images. Object detection is a field in veterinary medicine that requires further research, particularly in addressing challenges that could contribute to reducing the cost of diagnostic imaging. The necessity for more extensive datasets becomes apparent, as the model would thrive on variance.
+
+
 ## References 
-[1]
-[2]
-[3]
-[4]
+[1]betterpet.com/emergency-vet-costs
+[2]vcahospitals.com/know-your-pet/anemia-in-cats
+[3]klimud.org/public/atlas/idrar/web/www.diaglab.vet.cornell.edu/clinpath/modules/rbcmorph/fretic.htm
+[4]eclinpath.com/hematology/hemogram-basics/definitions-and-terms/aggregate-punctate
 
 
