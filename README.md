@@ -27,6 +27,7 @@ Since I worked on a Google Collab workspace, I was able to upload the dataset to
 
 ![dataframe example](https://github.com/martineztcindy/martineztcindy.github.io/blob/main/Capture.PNG?raw=true)
 ![XML file](https://github.com/martineztcindy/martineztcindy.github.io/blob/main/Capture2.PNG?raw=true)
+
 *Figure 2: Comparing the information in the dataframe to the corresponding 001173.xml file*
 
 Now, we have 1001 images, considering the division based on bounding box information. Ultimately, this means that a single image might contribute to both the training or testing sets, introducing bias to the results. Another approach would be to only select the first unique instance in the list of data. However, this would involve data augmentation to ensure diversity, but this can introduce noise. 
