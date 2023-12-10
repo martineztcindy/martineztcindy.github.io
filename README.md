@@ -65,5 +65,5 @@ To normalize the images, I divide the values in x_train and x_test by 255 to get
 
 Before building the model, it is important to also scale the outputs since the images normalized. 
 ``y_train = y_train / [image_width, image_height, image_width, image_height]
-``y_test = y_test / [image_width, image_height, image_width, image_height]
+  y_test = y_test / [image_width, image_height, image_width, image_height]``
 
