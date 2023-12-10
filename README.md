@@ -59,8 +59,7 @@ Before building the model, it is important to also scale the outputs since the i
 
   ## Modeling
 
-``
-model = tf.keras.Sequential([
+``model = tf.keras.Sequential([
 
     # First convolutional layer with 32 filters
     layers.Conv2D(32, (3, 3), activation='relu', input_shape=(300, 300, 3)),
@@ -79,8 +78,7 @@ model = tf.keras.Sequential([
     layers.Dense(32, activation='relu'), # 32 neurons
 
     layers.Dense(4, activation='linear') # 4 nuerons and linear activation
-]
-``
+]``
 
 I chose to use tf.keras.Sequential()to construct my CNN network since it is suitable for object detection tasks that process features across multiple layers. The model is designed to handle 300 x 300 pixel images with the layers to help learn and predict bounding box coordinates for the target object, aggregate reticulocyte. 
 
