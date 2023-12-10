@@ -11,7 +11,7 @@ Advancements in machine learning in human medicine are much greater than that of
 
 One example of utilizing machine learning is the diagnosis of anemia in feline patients. The first step would be conducting a complete blood cell count (CBC) on a blood analyzer. If the pet is found to have a low red blood cell (RBC) count, a blood smear will have to be stained to count the presence of immature red blood cells, known as reticulocytes. This will let the veterinarian know if the bone marrow is responding appropriately [2]. The challenge lies in distinguishing between aggregate reticulocyte and punctate reticulocyte within the blood smear. Only the aggregate reticulocyte should be counted because punctate reticulocytes, having been in the blood for several days, do not accurately reflect bone marrow response [3]. As Figure 1 shows, they have similar structure, except aggregate reticulocyte have more clumps a blue-stained granules. 
 
-![Image of aggregate and punctate reticulocyte]([https://raw.githubusercontent.com/username/repository/main/path/to/image.jpg](https://eclinpath.com/wp-content/uploads/aggregate-punctate.png))
+***UPLOAD PICTURE***
 Figure 1: Image of aggregate and punctate reticulocyte [4]
 
 The goal of this project was to use supervised learning techniques, specifically a CNN architecture, to train a model to locate an aggregate reticulocyte within a 300 x 300 image of a stained blood smear. The blood smear contained multiple classes and objects, but for this project, I only looked to locate one object of one class per image. Regression was used to predict the spatial coordinate (boundary boxes) of the aggregate reticulocytes within the given image. 
@@ -50,15 +50,13 @@ The data frame was then split into a training and testing dataframe before prepr
 
 Now that the data is split into training and test data, we need to convert the image and bounding box information need to be converted into NumPy arrays. First, we needed to load the input (images). Since we are loading the images using OpenCV, the default color representation is BGR, but Matplotlib operates in RGB. So if I wanted to visualize the data, it made sense to convert into RGB. For each row in the dataframe, a function extracted the “file name”, uploaded the image, and stored the pixel information as an array. Extracting bounding box information was straightforward as it was already organized into rows in the dataframe. 
 
-
 Since we already split the main dataframe into test_df and train_df, we need the input and output arrays for the training and testing dataframes. This results in our x_train, y_train, x_test, and y_test as NumPy arrays. The x_test and x_train were shaped as (number of samples, image width, image height, and channels). The y_test and y_train were shaped as (number of samples, number of coordinates). 
 
- x_train shape: (800, 300, 300, 3)
+x_train shape: (800, 300, 300, 3)
 y_train shape: (800, 4)
 
 x_train shape: (201, 300, 300, 3)
 x_train shape: (201, 4)
-
 
 To normalize the images, I divide the values in x_train and x_test by 255 to get a range from 0 to 1. I then visualized some of the sample to make sure the information is being stored properly. This was done for both the x_train and the x_test.  
 
