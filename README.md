@@ -52,17 +52,18 @@ Now that the data is split into training and test data, we need to convert the i
 
 Since we already split the main dataframe into test_df and train_df, we need the input and output arrays for the training and testing dataframes. This results in our x_train, y_train, x_test, and y_test as NumPy arrays. The x_test and x_train were shaped as (number of samples, image width, image height, and channels). The y_test and y_train were shaped as (number of samples, number of coordinates). 
 
-x_train shape: (800, 300, 300, 3)
-y_train shape: (800, 4)
+	x_train shape: (800, 300, 300, 3)
+	y_train shape: (800, 4)
 
-x_train shape: (201, 300, 300, 3)
-x_train shape: (201, 4)
+	x_train shape: (201, 300, 300, 3)
+	x_train shape: (201, 4)
 
 To normalize the images, I divide the values in x_train and x_test by 255 to get a range from 0 to 1. I then visualized some of the sample to make sure the information is being stored properly. This was done for both the x_train and the x_test.  
 
+**Figure X clearly has only 1 object while Figure 2 contains more than 1. 
+**
 
-Figure X clearly has only 1 object while Figure 2 contains more than 1. 
-
-Before building the model, it is important to also scale the outputs since the images normalized. y_train = y_train / [image_width, image_height, image_width, image_height]
-y_test = y_test / [image_width, image_height, image_width, image_height]
+Before building the model, it is important to also scale the outputs since the images normalized. 
+``y_train = y_train / [image_width, image_height, image_width, image_height]
+``y_test = y_test / [image_width, image_height, image_width, image_height]
 
