@@ -90,8 +90,8 @@ The model.fit() function was used to train the CNN with the training set for 10 
 
 ## Results
 Figure 4 shows the plot for the MAE over epochs. Figure 5 shows the plot for the IoU over epochs. 
-<img src = "https://github.com/martineztcindy/martineztcindy.github.io/blob/main/mae.png?raw=true.png" alt = "mae" width = 300>
-<img src = "https://github.com/martineztcindy/martineztcindy.github.io/blob/main/iou.png?raw=true.png" alt = "iou" width = 300>
+<img src = "https://github.com/martineztcindy/martineztcindy.github.io/blob/main/mae.png?raw=true.png" alt = "mae" width = 500>
+<img src = "https://github.com/martineztcindy/martineztcindy.github.io/blob/main/iou.png?raw=true.png" alt = "iou" width = 500>
 *Figures 4-5: MAE over epochs graph. IoU over epochs graph.*
 
 Below are samples of images from the testing and training predictions that contain both the predicted and ground truth bounding boxes. 
