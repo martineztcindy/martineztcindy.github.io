@@ -67,10 +67,19 @@ Now we can compile the model with our training and testing data using the IoU me
 The model.fit() function was used to train the CNN with the training set for 10 epochs, a batch size set to 32, and validating using the test data. 
 
 ## Results
-Figure XX shows the plot for the MAE over epochs. Figure XX shows the plot for the IoU over epochs. 
+Figure 4 shows the plot for the MAE over epochs. Figure 5 shows the plot for the IoU over epochs. 
+<img src = "https://github.com/martineztcindy/martineztcindy.github.io/blob/main/mae.png?raw=true.png" alt = "mae" width = 300>
+<img src = "https://github.com/martineztcindy/martineztcindy.github.io/blob/main/iou.png?raw=true.png" alt = "iou" width = 300>
+*Figures 4-5: MAE over epochs graph. IoU over epochs graph.*
 
-Below are samples of images from the testing and training set that contain both the predicted and ground truth bounding boxes. 
+Below are samples of images from the testing and training predictions that contain both the predicted and ground truth bounding boxes. 
 
+<img src = "https://github.com/martineztcindy/martineztcindy.github.io/blob/main/trainpred2.png?raw=true.png" alt = "new1" width = 300>
+<img src = "https://github.com/martineztcindy/martineztcindy.github.io/blob/main/trainpred3.png?raw=true.png" alt = "new2" width = 300>
+<img src = "https://github.com/martineztcindy/martineztcindy.github.io/blob/main/predtest2.png?raw=true.png" alt = "new3" width = 300>
+<img src = "https://github.com/martineztcindy/martineztcindy.github.io/blob/main/predtest1.png?raw=true.png" alt = "new4" width = 300>
+
+*Figures 6-9: Sample images from testing and training predictions*
 
 Finally, I tested images not previously shown by the model. Unfortunately, I do not have the annotations so I cannot assess the results. However, visually one can see the model’s capability in detecting aggregate reticulocytes. 
 
