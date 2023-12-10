@@ -16,7 +16,7 @@ One example of utilizing machine learning is the diagnosis of anemia in feline p
 
 *Figure 1: Image of aggregate and punctate reticulocyte [4]*
 
-The goal of this project was to use supervised learning techniques, specifically a CNN architecture, to train a model to locate an aggregate reticulocyte within a 300 x 300 image of a stained blood smear. The blood smear contained multiple classes and objects, but for this project, I only looked to locate one object of one class per image. Regression was used to predict the spatial coordinate (boundary boxes) of the aggregate reticulocytes within the given image. 
+The goal of this project was to use supervised learning techniques, specifically a CNN architecture, to train a model to locate an aggregate reticulocyte within a 300 x 300 image of a stained blood smear. The blood smear contained multiple classes and objects, but for this project, I only looked to locate one object of one class per image. Regression was used to predict the spatial coordinate (bounding boxes) of the aggregate reticulocytes within the given image. 
 
 The model was able to predict the bounding boxes with a final Intersection over Union score of 0.52 for the training set and 0.53 for the testing set. The final mean average error (MAE) was 0.074 and 0.073 for the training and testing set, respectively.
 
@@ -110,10 +110,10 @@ Finally, I tested images not previously shown by the model. Unfortunately, I do 
 <img src = "https://github.com/martineztcindy/martineztcindy.github.io/blob/main/newimage4.png?raw=true.png" alt = "new7" width = 300>
 <img src = "https://github.com/martineztcindy/martineztcindy.github.io/blob/main/newimage3.png?raw=true.png" alt = "new8" width = 300>
 
-*Figures 10-3: Sample images from never-before-seen images and the prediction boundary box*
+*Figures 10-3: Sample images from never-before-seen images and the prediction bounding box*
 
 ## Discussion
-The model did not prove to be as robust for predicting bounding boxing, with an IoU score of 0.52 for the training set, 0.53 for the testing test. Typically, an IoU score above 0.5 indicates a strong predictive performance. We would expect a great increase in IoU score for the testing test, so the slight increase in the testing set’s IoU score could potentially be attributed to repeated instances of the same images, given the dataset division by bounding box rather than unique file names. Despite these challenges, the relatively low MAE score for both the testing and training sets suggest accurate boundary box regression. The most impressive part about the model’s performance was its ability to accurately detect aggregate reticulocytes in images it had never seen before. 
+The model did not prove to be as robust for predicting bounding boxing, with an IoU score of 0.52 for the training set, 0.53 for the testing test. Typically, an IoU score above 0.5 indicates a strong predictive performance. We would expect a great increase in IoU score for the testing test, so the slight increase in the testing set’s IoU score could potentially be attributed to repeated instances of the same images, given the dataset division by bounding box rather than unique file names. Despite these challenges, the relatively low MAE score for both the testing and training sets suggest accurate bounding box regression. The most impressive part about the model’s performance was its ability to accurately detect aggregate reticulocytes in images it had never seen before. 
 
 ## Conclusion 
 When I first started this project, the initial task was to build a multi-task, multi-object detector. This was because the original dataset contains images with multiple objects with three distinct classes. So, not only would this be a regression task, but also a classification task. However, the main obstacle I faced was the dynamic nature of the data. The variability in both input shapes and corresponding output structures need to be carefully considered when building a CNN. 
